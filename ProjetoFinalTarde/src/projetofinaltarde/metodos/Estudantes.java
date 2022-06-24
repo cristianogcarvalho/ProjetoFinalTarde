@@ -12,7 +12,7 @@ public class Estudantes {
     private int id;
     private String turma;
     private String nome;
-    private String emai;
+    private String email;
     private String cpf;
     private String endereco;
     private String telefone;
@@ -41,12 +41,12 @@ public class Estudantes {
         this.nome = nome;
     }
 
-    public String getEmai() {
-        return emai;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmai(String emai) {
-        this.emai = emai;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getCpf() {
@@ -72,4 +72,5 @@ public class Estudantes {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-}
+
+    }
