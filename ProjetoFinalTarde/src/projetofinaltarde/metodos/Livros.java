@@ -14,7 +14,7 @@ public class Livros {
     private String autor;
     private String isbn;
     private String editora;
-    private String descrição;
+    private String descricao;
 
     public int getId() {
         return id;
@@ -56,11 +56,11 @@ public class Livros {
         this.editora = editora;
     }
 
-    public String getDescrição() {
-        return descrição;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescrição(String descrição) {
-        this.descrição = descrição;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }

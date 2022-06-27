@@ -9,13 +9,13 @@ package projetofinaltarde.metodos;
  * @author professor
  */
 public class Estudantes {
-   private int id;
+    private int id;
     private String turma;
     private String nome;
     private String email;
     private String cpf;
     private String endereco;
-    private String telefone;    
+    private String telefone;
 
     public int getId() {
         return id;

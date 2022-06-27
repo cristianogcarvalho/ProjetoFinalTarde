@@ -19,7 +19,7 @@ public class ConexaoBD {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Conectando ao Banco!");
             return DriverManager.getConnection("jdbc:mysql:"
-                    + "//192.168.1.230/projetofinaltarde", "", "");
+                    + "//192.168.1.230/projetofinaltarde", "michele", "");
         } catch (ClassNotFoundException e) {
             System.out.println("Problemas na conexão!");
             throw new SQLException(e.getMessage());
