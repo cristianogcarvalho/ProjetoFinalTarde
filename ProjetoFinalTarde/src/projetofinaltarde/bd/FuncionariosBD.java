@@ -24,7 +24,7 @@ public class FuncionariosBD {
     } 
     public void adiciona(Funcionarios x) throws SQLException {
         String sql = "insert into editoras (nome,login,senha,email,telefone)"                
-                + "values(?,?)";
+                + "values(?,?,?,?,?)";
         
         PreparedStatement stmt = conexao.prepareStatement(sql);        
         stmt.setString(1, x.getNome());
