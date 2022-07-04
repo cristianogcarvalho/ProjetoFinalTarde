@@ -2,24 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package projetofinaltarde.telas;
+
 
 import java.sql.SQLException;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import projetofinaltarde.bd.EditorasBD;
 import projetofinaltarde.metodos.Editoras;
-import projetofinaltarde.metodos.Editorass;
+
 
 /**
  *
  * @author professor
  */
-public class JPEditorass extends javax.swing.JPanel {
+public class JPEditoras extends javax.swing.JPanel {
 
     /**
      * Creates new form JPEditorass
      */
-    public JPEditorass() {
+    public JPEditoras() {
         initComponents();
     }
 
@@ -76,7 +78,18 @@ public class JPEditorass extends javax.swing.JPanel {
 
         jLabelPesquisar.setText("Pesquisar");
 
+        jTextFieldPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPesquisarActionPerformed(evt);
+            }
+        });
+
         jButtonOk.setText("Ok");
+        jButtonOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOkActionPerformed(evt);
+            }
+        });
 
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -180,12 +193,14 @@ try {
             //criar uma tela para perguntar se quer ou não excluir
             if (resposta == JOptionPane.YES_NO_OPTION) {
 
-                Editoras cli = new Editoras();
+                Editoras edi = new Editoras();
 
                 EditorasBD bd = new EditorasBD();
 
-                cli.setId(Integer.parseInt(jTextFieldId.getText()));
-                bd.remove(cli);
+                edi.setId(Integer.parseInt(jTextFieldId.getText()));
+                edi.setNome(jTextFieldNome.getText());
+                edi.setCidade(jTextFieldCidade.getText());
+                bd.remove(edi);
                 
 
                 javax.swing.table.DefaultTableModel dtm
@@ -194,7 +209,7 @@ try {
                 dtm.removeRow(jTable1.getSelectedRow());
 
                 JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!");
-                limpar();
+//                limpar();
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,
@@ -206,7 +221,24 @@ try {
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        // TODO add your handling code here:
+       try {
+            Editoras edi = new Editoras();
+
+            EditorasBD bd = new EditorasBD();
+
+            edi.setId(Integer.parseInt(jTextFieldId.getText()));
+            edi.setNome(jTextFieldNome.getText());
+            edi.setCidade(jTextFieldCidade.getText());
+            
+            bd.adiciona(edi);
+            JOptionPane.showMessageDialog(null, "Dados gravados com sucesso!");
+//            limpar();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro\n" + e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro\n" + e);
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
@@ -222,7 +254,7 @@ try {
             alt.setCidade(jTextFieldCidade.getText());
             
 
-            bd.alterar(alt);
+             bd.alterar(alt);
             JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!");
 //            limpar();
 
@@ -232,6 +264,44 @@ try {
             JOptionPane.showMessageDialog(null, "Erro\n" + e);
         }       
     }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jTextFieldPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarActionPerformed
+ 
+    }//GEN-LAST:event_jTextFieldPesquisarActionPerformed
+
+    private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
+ try {
+            EditorasBD bd = new EditorasBD();
+            List<Editoras> dados = bd.getLista('%'+jTextFieldPesquisar.getText()+'%');
+
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+            for (int i = dtm.getRowCount(); i > 0; i--) {
+                dtm.removeRow(i - 1);
+            }
+            if (dados.isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "Não existem dados para a busca");
+            }
+
+            for (int i = 0; i < dados.size(); i++) {
+                dtm.addRow(new Object[]{
+                    dados.get(i).getId(),
+                    dados.get(i).getNome(),
+                    dados.get(i).getCidade()});
+            }
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao "
+                    + "buscar no banco de dados \n" + e);
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro  ao buscar \n" + e);
+
+        }
+            // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonOkActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

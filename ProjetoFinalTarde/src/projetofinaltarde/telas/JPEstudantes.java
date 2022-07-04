@@ -111,6 +111,12 @@ public class JPEstudantes extends javax.swing.JPanel {
 
         jLabelPesquisar.setText("Pesquisar");
 
+        jTextFieldPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPesquisarActionPerformed(evt);
+            }
+        });
+
         jButtonOk.setText("OK");
         jButtonOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,6 +402,10 @@ try {
             }
         }
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jTextFieldPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPesquisarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
