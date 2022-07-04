@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import projetofinaltarde.metodos.Estudantes;
+import projetofinaltarde.metodos.Estudantes;
 
 /**
  *
@@ -23,7 +24,7 @@ public class EstudantesBD {
         this.conexao = ConexaoBD.getConexao();
     } 
     public void adiciona(Estudantes x) throws SQLException {
-        String sql = "insert into estudantes (turma,nome,email,cpf,endereço,telefone)"                
+        String sql = "insert into estudantes (turma,nome,email,cpf,endereco,telefone)"                
                 + "values(?,?,?,?,?,?)";
         
         PreparedStatement stmt = conexao.prepareStatement(sql);        
@@ -38,17 +39,17 @@ public class EstudantesBD {
         stmt.execute();
         stmt.close();
     }
-    
+ 
     
      public void alterar(Estudantes x) throws SQLException {
-        String sql = "update clientes set turma=?,nome=?,email=?,cpf=?,endereco=?,telefone=? where id=?";
+        String sql = "update clientes set nome=?,turma=?,nome=?,email=?,cpf=?,endereco=?,telefone=?, where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
-       stmt.setString(1, x.getTurma());         
-       stmt.setString(2, x.getNome());         
-       stmt.setString(3, x.getEmail());         
-       stmt.setString(4, x.getCpf());         
-       stmt.setString(5, x.getEndereco());         
-       stmt.setString(6, x.getTelefone());         
+       stmt.setString(1, x.getTurma());
+        stmt.setString(2, x.getNome());
+        stmt.setString(3, x.getEmail());
+        stmt.setString(4, x.getCpf());
+        stmt.setString(5, x.getEndereco());
+        stmt.setString(6, x.getTelefone());        
         stmt.setInt(7, x.getId());
 
         stmt.execute();
@@ -65,12 +66,12 @@ public class EstudantesBD {
         stmt.close();
     }
       
-    public List<Estudantes> getLista(String nome) throws SQLException{
+    public List<Estudantes> getLista(String login) throws SQLException{
         String sql = "select * from estudantes where nome like ?";
         
         PreparedStatement stmt = (PreparedStatement) 
                 this.conexao.prepareStatement(sql);
-        stmt.setString(1, nome);
+        stmt.setString(1, login);
         
         ResultSet rs = stmt.executeQuery();
         List<Estudantes> minhaLista = new ArrayList<>();
@@ -78,7 +79,7 @@ public class EstudantesBD {
             Estudantes X = new Estudantes();            
             X.setId(rs.getInt("id"));            
             X.setTurma(rs.getString("turma")); 
-            X.setNome(rs.getString("nome")); 
+            X.setNome(rs.getString("nome"));
             X.setEmail(rs.getString("email")); 
             X.setCpf(rs.getString("cpf")); 
             X.setEndereco(rs.getString("endereco")); 

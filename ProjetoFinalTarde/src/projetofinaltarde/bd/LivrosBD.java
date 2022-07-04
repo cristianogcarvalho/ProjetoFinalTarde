@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import projetofinaltarde.metodos.Livros;
 import projetofinaltarde.metodos.Livros;
+import projetofinaltarde.metodos.Livros;
 
 /**
  *
@@ -19,38 +20,45 @@ import projetofinaltarde.metodos.Livros;
  */
 public class LivrosBD {
     
-    private Connection conexao;
+   private Connection conexao;
     
     public LivrosBD() throws SQLException {
         this.conexao = ConexaoBD.getConexao();
     } 
     public void adiciona(Livros x) throws SQLException {
-        String sql = "insert into livros (nome,cidade)"                
-                + "values(?,?)";
+        String sql = "insert into livros (nome,autor,ISBN,editora,descricao,)"                
+                + "values(?,?,?,?,?)";
         
         PreparedStatement stmt = conexao.prepareStatement(sql);        
         stmt.setString(1, x.getNome());
-        stmt.setString(2, x.getCidade());
+        stmt.setString(2, x.getAutor());
+        stmt.setString(3, x.getIsbn());
+        stmt.setString(4, x.getEditora());
+        stmt.setString(6, x.getDescricao());
         
         
         stmt.execute();
         stmt.close();
     }
-    
+ 
     
      public void alterar(Livros x) throws SQLException {
-        String sql = "update clientes set nome=?,cidade=? where id=?";
+        String sql = "update clientes set nome=?,nome=?,autor=?,ISBN=?,editora=?,descricao=?, where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
-       stmt.setString(1, x.getNome());         
-       stmt.setString(2, x.getCidade());         
-        stmt.setInt(3, x.getId());
+       stmt.setString(1, x.getNome());
+        stmt.setString(2, x.getAutor());
+        stmt.setString(3, x.getIsbn());
+        stmt.setString(4, x.getEditora());
+        stmt.setString(5, x.getDescricao());
+        stmt.setString(6, x.getDescricao());        
+        stmt.setInt(7, x.getId());
 
         stmt.execute();
         stmt.close();
     }
      
      public void remove(Livros x) throws SQLException {
-        String sql = "delete from livros where id=?";
+        String sql = "delete from estudantes where id=?";
         
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, x.getId());
@@ -60,7 +68,7 @@ public class LivrosBD {
     }
       
     public List<Livros> getLista(String login) throws SQLException{
-        String sql = "select * from livros where nome like ?";
+        String sql = "select * from estudantes where nome like ?";
         
         PreparedStatement stmt = (PreparedStatement) 
                 this.conexao.prepareStatement(sql);
@@ -72,7 +80,10 @@ public class LivrosBD {
             Livros X = new Livros();            
             X.setId(rs.getInt("id"));            
             X.setNome(rs.getString("nome")); 
-            X.setCidade(rs.getString("cidade")); 
+            X.setAutor(rs.getString("autor"));
+            X.setIsbn(rs.getString("isbn")); 
+            X.setEditora(rs.getString("editora"));  
+            X.setDescricao(rs.getString("descricao")); 
             
             
             minhaLista.add(X);

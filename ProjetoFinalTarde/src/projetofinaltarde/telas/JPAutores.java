@@ -4,6 +4,19 @@
  */
 package projetofinaltarde.telas;
 
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import projetofinaltarde.bd.AutoresBD;
+import projetofinaltarde.bd.AutoresBD;
+import projetofinaltarde.bd.AutoresBD;
+import projetofinaltarde.bd.LivrosBD;
+import projetofinaltarde.metodos.Autores;
+import projetofinaltarde.metodos.Autores;
+import projetofinaltarde.metodos.Autores;
+import projetofinaltarde.metodos.Livros;
+
 /**
  *
  * @author professor
@@ -26,19 +39,353 @@ public class JPAutores extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldCodigos = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldAutores1 = new javax.swing.JTextField();
+        jButtonSalvar = new javax.swing.JButton();
+        jButtonAutores = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldPesquisar = new javax.swing.JTextField();
+        jButtonOk = new javax.swing.JButton();
+
+        jLabel1.setText("Autores:");
+
+        jTextFieldCodigos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCodigosActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Códigos");
+
+        jTextFieldAutores1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldAutores1ActionPerformed(evt);
+            }
+        });
+
+        jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
+
+        jButtonAutores.setText("Alterar");
+        jButtonAutores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAutoresActionPerformed(evt);
+            }
+        });
+
+        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldCodigos, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldAutores1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonSalvar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonAutores)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonExcluir))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldCodigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldAutores1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSalvar)
+                    .addComponent(jButtonAutores)
+                    .addComponent(jButtonExcluir))
+                .addGap(40, 40, 40))
+        );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Códigos", "Autores"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
+
+        jLabel3.setText("Pesquisar");
+
+        jTextFieldPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPesquisarActionPerformed(evt);
+            }
+        });
+
+        jButtonOk.setText("OK");
+        jButtonOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOkActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonOk)
+                        .addGap(46, 46, 46))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonOk))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextFieldCodigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCodigosActionPerformed
+
+    private void jTextFieldPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPesquisarActionPerformed
+
+    private void jTextFieldAutores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAutores1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldAutores1ActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+    try {
+            Autores aut = new Autores();
+
+           AutoresBD bd = new  AutoresBD();
+
+            aut.setId(Integer.parseInt(jTextFieldCodigos.getText()));
+            aut.setNome(jTextFieldAutores1.getText());
+           
+
+            bd.adiciona(aut);
+            JOptionPane.showMessageDialog(null, "Dados gravados com sucesso!");
+//            limpar();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro\n" + e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro\n" + e);
+        }     // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAutoresActionPerformed
+{                                               
+        try {
+            Autores aut = new Autores();
+
+           AutoresBD bd = new  AutoresBD();
+
+           aut.setId(Integer.parseInt(jTextFieldCodigos.getText()));
+            aut.setNome(jTextFieldAutores1.getText());
+         
+
+
+            bd.alterar(aut);
+            JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!");
+//            limpar();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro\n" + e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro\n" + e);
+        }
+    }                              // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAutoresActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+try {
+            int resposta = JOptionPane.showConfirmDialog(null,
+                    "Deseja realmente excluir este Cliente?",
+                    "Confirmação", JOptionPane.YES_NO_OPTION);
+            //criar uma tela para perguntar se quer ou não excluir
+            if (resposta == JOptionPane.YES_NO_OPTION) {
+
+                Autores aut = new Autores();
+
+                AutoresBD bd = new AutoresBD();
+
+                aut.setId(Integer.parseInt(jTextFieldCodigos.getText()));
+                bd.remove(aut);
+                
+
+                javax.swing.table.DefaultTableModel dtm
+                        = // para atualizar a tabela
+                        (javax.swing.table.DefaultTableModel) jTable1.getModel();
+                dtm.removeRow(jTable1.getSelectedRow());
+
+                JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!");
+//                limpar();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Erro ao excluir no banco! \n" + e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Erro! \n Não pode ser excluido \n" + e);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
+{                                                 
+        try {
+            LivrosBD bd = new LivrosBD();
+            List<Livros> dados = bd.getLista('%'+jTextFieldPesquisar.getText()+'%');
+
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+            for (int i = dtm.getRowCount(); i > 0; i--) {
+                dtm.removeRow(i - 1);
+            }
+            if (dados.isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "Não existem dados para a busca");
+            }
+
+            for (int i = 0; i < dados.size(); i++) {
+                dtm.addRow(new Object[]{
+                    dados.get(i).getId(),
+                   dados.get(i).getAutor()});
+            }
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, "Erro ao "
+                    + "buscar no banco de dados \n" + e);
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro  ao buscar \n" + e);
+
+        }
+    }                      // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonOkActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+{                                     
+        
+        int[] l = jTable1.getSelectedRows();
+        if (l.length == 1) {
+            try {
+                jTextFieldCodigos.setText(jTable1.getValueAt(l[0], 0) + "");
+                jTextFieldAutores1.setText(jTable1.getValueAt(l[0], 1) + "");
+                
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "Ocorreu um erro \n" + e.getMessage());
+            }
+        }        
+        
+    }             // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAutores;
+    private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonOk;
+    private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldAutores1;
+    private javax.swing.JTextField jTextFieldCodigos;
+    private javax.swing.JTextField jTextFieldPesquisar;
     // End of variables declaration//GEN-END:variables
 }
