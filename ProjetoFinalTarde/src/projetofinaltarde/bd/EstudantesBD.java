@@ -24,7 +24,7 @@ public class EstudantesBD {
     } 
     public void adiciona(Estudantes x) throws SQLException {
         String sql = "insert into editoras (turma,nome,email,cpf,endereco,telefone)"                
-                + "values(?,?)";
+                + "values(?,?,?,?,?,?)";
         
         PreparedStatement stmt = conexao.prepareStatement(sql);        
         stmt.setString(1, x.getTurma());

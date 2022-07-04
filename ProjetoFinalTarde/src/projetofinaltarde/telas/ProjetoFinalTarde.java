@@ -14,7 +14,8 @@ public class ProjetoFinalTarde {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       JFPrincipal principal = new JFPrincipal();
+       principal.setVisible(true);
     }
     
 }
